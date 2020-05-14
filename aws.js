@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AWS Content Focus
 // @namespace    http://aws.amazon.com/
-// @version      0.1
+// @version      0.2
 // @description  remove extra content from AWS content
 // @author       Brian Pfeil
 // @match        https://aws.amazon.com/*
