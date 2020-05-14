@@ -6,8 +6,8 @@
 // @author       Brian Pfeil
 // @match        https://aws.amazon.com/*
 // @grant        none
-// @updateURL   https://raw.githubusercontent.com/pfeilbr/browser-user-scripts/aws.js
-// @downloadURL https://raw.githubusercontent.com/pfeilbr/browser-user-scripts/aws.js
+// @updateURL   https://raw.githubusercontent.com/pfeilbr/browser-user-scripts/master/aws.js
+// @downloadURL https://raw.githubusercontent.com/pfeilbr/browser-user-scripts/master/aws.js
 // ==/UserScript==
 
 (function () {
