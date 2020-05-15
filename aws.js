@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AWS Content Focus
 // @namespace    http://aws.amazon.com/
-// @version      0.2
+// @version      0.3
 // @description  remove extra content from AWS content
 // @author       Brian Pfeil
 // @match        https://aws.amazon.com/*
@@ -12,19 +12,43 @@
 
 (function () {
   "use strict";
+
+  const log = (o) => {
+    console.info(`user script: ${o}`);
+  };
+
+  const remove = (selector) => {
+    try {
+      const e = document.querySelector(selector).remove();
+      if (e) {
+        e.remove();
+      } else {
+        log(`selector "${selector}" not found`);
+      }
+    } catch (error) {}
+  };
+
   const focusPageContent = () => {
-    // remove fat header content
-    document.querySelector("#aws-page-header").remove();
-    document.querySelector("body > div:nth-child(1)").remove();
-    document
-      .querySelector("#aws-page-content > div.aws-blog-related-posts")
-      .remove();
+    const selectors = [
+      // remove fat header content
+      "#aws-page-header",
+      "div.awsm",
+
+      // remove related posts
+      "#aws-page-content > div.aws-blog-related-posts",
+
+      // remove right sidebar content
+      "div.aws-directories-container",
+
+      // remove left nav
+      ".leftnav",
+      "aside",
+    ];
+
+    selectors.forEach((selector) => remove(selector));
 
     // shrink top margin
     document.querySelector("#aws-page-content").style.marginTop = "10px";
-
-    // remove right sidebar content
-    document.querySelector("#aws-page-content > div > div").remove();
 
     // increase content width to fill page more
     document.querySelector("#aws-page-content > div > main").style.width =
@@ -35,9 +59,7 @@
     "keyup",
     (e) => {
       if (e.key === "f") {
-        console.log(
-          `user script: focusing page content.  triggered by pressing "${e.key}" key`
-        );
+        log(`focusing page content.  triggered by pressing "${e.key}" key`);
         focusPageContent();
       }
     },
